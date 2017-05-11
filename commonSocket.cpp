@@ -77,7 +77,7 @@ int Socket::recvS(void *buffer, int toRead) {
         toread -= leido;
         bufptr += leido;
     }
-    return OK;
+    return OK_SOCKET;
 }
 
 int Socket::sendS(const void *msg, int toSend) {
@@ -91,7 +91,7 @@ int Socket::sendS(const void *msg, int toSend) {
         ptr += bytes;
         toSend -= bytes;
     }
-    return OK;
+    return OK_SOCKET;
 }
 
 int Socket::shutdownWriteS() {

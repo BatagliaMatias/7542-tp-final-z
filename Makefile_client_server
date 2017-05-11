@@ -27,7 +27,7 @@ threads = si
 #gtk = si
 
 # Si es un programa gtkmm, descomentar (quitar el '#' a) la siguiente línea.
-#gtkmm = si
+gtkmm = si
 
 # Descomentar si se quiere ver como se invoca al compilador
 #verbose = si
@@ -73,13 +73,13 @@ endif
 
 # Agrega flags y libs de GTK+ de ser necesario.
 ifdef gtkmm
-CFLAGS += $(shell pkg-config --cflags gtkmm-3.0) \
-	-DG_DISABLE_DEPRECATED 	 	\
-	-DGDK_DISABLE_DEPRECATED 	\
-	-DGDK_PIXBUF_DISABLE_DEPRECATED \
-	-DGTK_DISABLE_DEPRECATED	\
-	-DGDKMM_DISABLE_DEPRECATED 	\
-	-DGTKMM_DISABLE_DEPRECATED
+CFLAGS += $(shell pkg-config --cflags gtkmm-3.0)# \
+#	-DG_DISABLE_DEPRECATED 	 	\
+#	-DGDK_DISABLE_DEPRECATED 	\
+#	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+#	-DGTK_DISABLE_DEPRECATED	\
+#	-DGDKMM_DISABLE_DEPRECATED 	\
+#	-DGTKMM_DISABLE_DEPRECATED
 LDFLAGS += $(shell pkg-config --libs gtkmm-3.0)
 endif
 

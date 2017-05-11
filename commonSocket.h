@@ -18,7 +18,7 @@
 
 #define BUFFER_SIZE 100
 #define BYTES_TAMANIO 4
-#define OK 1
+#define OK_SOCKET 1
 #define ERROR 0
 
 #define LISTEN_TO '5'
