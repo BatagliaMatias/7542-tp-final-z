@@ -88,6 +88,7 @@ endif
 
 LDFLAGS += -lSDL2
 LDFLAGS += -lSDL2_image
+LDFLAGS += -lSDL2_mixer
 #LDFLAGS += $(shell sdl-config --libs  lSDL_image)
 
 # Linkea con libm de ser necesario.

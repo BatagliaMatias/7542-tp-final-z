@@ -3,6 +3,7 @@
 #include <gtkmm.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 
 
 void on_jugar_clicked(Glib::RefPtr<Gtk::Application> app){
@@ -18,7 +19,8 @@ void on_jugar_clicked(Glib::RefPtr<Gtk::Application> app){
 
     // init SDL
 
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048);
     SDL_Window * window = SDL_CreateWindow("Z",
                                            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
     SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);
@@ -36,6 +38,9 @@ void on_jugar_clicked(Glib::RefPtr<Gtk::Application> app){
     // handle events
     int destinoX = 100;
     int destinoY = 100;
+
+    Mix_Chunk *sonidoMover = Mix_LoadWAV( "acknowledge_01.wav" );
+
     while (!quit) {
         SDL_PollEvent(&event);
         Uint32 ticks = SDL_GetTicks();
@@ -66,6 +71,7 @@ void on_jugar_clicked(Glib::RefPtr<Gtk::Application> app){
             case SDL_MOUSEBUTTONDOWN:
                 destinoX = event.motion.x;
                 destinoY = event.motion.y;
+                Mix_PlayChannel( -1, sonidoMover, 0 );
                 break;
         }
 
@@ -99,7 +105,8 @@ void on_jugar_clicked(Glib::RefPtr<Gtk::Application> app){
     }
 
     // cleanup SDL
-
+    Mix_FreeChunk( sonidoMover );
+    sonidoMover = NULL;
     SDL_DestroyTexture(textureAnimacion);
     SDL_DestroyTexture(textureNave);
     SDL_DestroyRenderer(renderer);
