@@ -83,6 +83,11 @@ CFLAGS += $(shell pkg-config --cflags gtkmm-3.0)# \
 LDFLAGS += $(shell pkg-config --libs gtkmm-3.0)
 endif
 
+
+#CFLAGS += $(shell pkg-config --cflags sdl2 SDL2_mixer)
+#LDFLAGS += $(shell pkg-config --libs sdl2 SDL2_mixer)
+LDFLAGS += -lSDL2
+
 # Linkea con libm de ser necesario.
 ifdef math
 LDFLAGS += -lm
